@@ -4,24 +4,29 @@ import 'package:wasuauthsdk/auth/wasu_urs_auth.dart';
 import 'package:wasuauthsdk/bean/user_info.dart';
 
 class RegisterPage extends StatefulWidget {
+  var _title;
   @override
   State<StatefulWidget> createState() {
-    return RegisterState();
+    return RegisterState(_title);
   }
 
+  RegisterPage(this._title);
 }
 
 class RegisterState extends State {
+  var _title;
   TextEditingController nickNameController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController verCodeController = TextEditingController();
 
+  RegisterState(this._title);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("注册（含发送验证码）"),
+        title: Text(_title),
       ),
       body: Container(
         child: Column(

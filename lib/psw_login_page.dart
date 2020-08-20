@@ -1,15 +1,23 @@
 
 
 import 'package:flutter/material.dart';
-import 'package:flutterauthdemo/my_listener.dart';
+import 'package:flutterauthdemo/dialog_result_listener.dart';
 import 'package:wasuauthsdk/auth/wasu_urs_auth.dart';
 
 class PswLoginPage extends StatefulWidget {
+  var _title;
+
+  PswLoginPage(this._title);
+
   @override
-  _PswLoginPageState createState() => _PswLoginPageState();
+  _PswLoginPageState createState() => _PswLoginPageState(_title);
 }
 
 class _PswLoginPageState extends State<PswLoginPage> {
+  var _title;
+
+  _PswLoginPageState(this._title);
+
   TextEditingController pswController = TextEditingController();
   TextEditingController userNameController = TextEditingController();
 
@@ -17,7 +25,7 @@ class _PswLoginPageState extends State<PswLoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("用户名密码登录"),
+        title: Text(_title),
       ),
       body: Container(
         child: Column(
@@ -54,6 +62,6 @@ class _PswLoginPageState extends State<PswLoginPage> {
 
   void _login() {
     print("登录");
-    WasuUrsAuth.getInstance().callPwdLogin(userNameController.text, pswController.text, resultListener: MyListener());
+    WasuUrsAuth.getInstance().callPwdLogin(userNameController.text, pswController.text, resultListener: DialogResultListener(context));
   }
 }

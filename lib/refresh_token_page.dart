@@ -3,18 +3,25 @@ import 'package:flutterauthdemo/my_listener.dart';
 import 'package:wasuauthsdk/auth/wasu_urs_auth.dart';
 
 class RefreshTokenPage extends StatefulWidget {
+  var _title;
+
+  RefreshTokenPage(this._title);
+
   @override
-  _RefreshTokenPageState createState() => _RefreshTokenPageState();
+  _RefreshTokenPageState createState() => _RefreshTokenPageState(_title);
 }
 
 class _RefreshTokenPageState extends State<RefreshTokenPage> {
+  var _title;
   TextEditingController refreshTokenController = TextEditingController();
+
+  _RefreshTokenPageState(this._title);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("刷新Token"),
+        title: Text(_title),
       ),
       body: Container(
         child: Column(

@@ -3,11 +3,19 @@ import 'package:flutterauthdemo/my_listener.dart';
 import 'package:wasuauthsdk/auth/wasu_urs_auth.dart';
 
 class BindStbPage extends StatefulWidget {
+  var _title;
+
+  BindStbPage(this._title);
+
   @override
-  _BindStbPageState createState() => _BindStbPageState();
+  _BindStbPageState createState() => _BindStbPageState(_title);
 }
 
 class _BindStbPageState extends State<BindStbPage> {
+  var _title;
+
+  _BindStbPageState(this._title);
+
   TextEditingController tokenController = TextEditingController();
   TextEditingController stbIdController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
@@ -15,11 +23,9 @@ class _BindStbPageState extends State<BindStbPage> {
 
   @override
   Widget build(BuildContext context) {
-    var _value;
-
     return Scaffold(
         appBar: AppBar(
-          title: Text("手机绑定机顶盒"),
+          title: Text(_title),
         ),
         body: Column(
           children: <Widget>[

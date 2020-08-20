@@ -5,34 +5,44 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:wasuauthsdk/auth/wasu_urs_auth.dart';
 
 class InitPage extends StatefulWidget {
+  var _title;
+
   @override
   State<StatefulWidget> createState() {
-    return InitPageSate();
+    return InitPageSate(_title);
+  }
+
+  InitPage(String title){
+    _title = title;
   }
 }
 
-
 class InitPageSate extends State {
+  var _title;
   TextEditingController idController = TextEditingController();
   TextEditingController secretController = TextEditingController();
   TextEditingController packageNameController = TextEditingController();
 
-  void initSDK() {
+  InitPageSate(this._title);
+
+  void initSDK() async {
+    String msg = "初始化成功！";
     if(idController.text.isEmpty || secretController.text.isEmpty || packageNameController.text.isEmpty) {
-      WasuUrsAuth.getInstance().init("c1", "123");
-      Fluttertoast.showToast(msg: "参数不完整，已使用默认值初始化成功！");
-      return;
+      idController.text = "c2";
+      secretController.text = "123";
+      packageNameController.text = "com.android.wasu.enjoytv";
+      msg = "已使用默认值初始化成功！";
     }
     print("initSDK id = ${idController.text} , secret = ${secretController.text}, packageName = ${packageNameController.text}");
-    WasuUrsAuth.getInstance().init(idController.text, secretController.text);
-    Fluttertoast.showToast(msg: "初始化成功！");
+    WasuUrsAuth.getInstance().init(idController.text, secretController.text, packageNameController.text).setLoggerEnable(true);
+    Fluttertoast.showToast(msg: msg);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("初始化"),
+        title: Text(_title),
       ),
       body: Container(
           padding: EdgeInsets.fromLTRB(10, 0, 10, 0),

@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutterauthdemo/auth_login_page.dart';
 import 'package:flutterauthdemo/bind_stb_page.dart';
+import 'package:flutterauthdemo/gen_qrcode_page.dart';
+import 'package:flutterauthdemo/get_qrcode_status.dart';
 import 'package:flutterauthdemo/init_page.dart';
 import 'package:flutterauthdemo/phone_quick_login_page.dart';
 import 'package:flutterauthdemo/psw_login_page.dart';
 import 'package:flutterauthdemo/query_user_info_page.dart';
 import 'package:flutterauthdemo/refresh_token_page.dart';
 import 'package:flutterauthdemo/register_page.dart';
+import 'package:flutterauthdemo/scan_opt_page.dart';
 import 'package:flutterauthdemo/smscode_login_page.dart';
 import 'package:flutterauthdemo/update_user_info_page.dart';
 
@@ -26,6 +30,7 @@ class HomePageState extends State {
     "本机号码快捷登录",
     "获取二维码",
     "检查二维码状态",
+    "手机扫码",
     "二维码授权登录",
     "刷新Token",
     "查询用户信息",
@@ -70,51 +75,72 @@ class HomePageState extends State {
   }
 
   void _enter(int index) {
-    print("click item = $index");
+    String title = titleItems[index];
+    print("click item = $index, $title");
     switch(index) {
       case 0:
         Navigator.push(context, MaterialPageRoute(
-          builder: (context)=>InitPage()
+          builder: (context)=>InitPage(title)
         ));
         break;
       case 1:
         Navigator.push(context, MaterialPageRoute(
-          builder: (context)=>RegisterPage()
+          builder: (context)=>RegisterPage(title)
         ));
         break;
       case 2:
         Navigator.push(context, MaterialPageRoute(
-            builder: (context)=>PswLoginPage()
+            builder: (context)=>PswLoginPage(title)
         ));
         break;
       case 3:
         Navigator.push(context, MaterialPageRoute(
-            builder: (context)=>SmsCodeLoginPage()
+            builder: (context)=>SmsCodeLoginPage(title)
         ));
         break;
       case 4:
         Navigator.push(context, MaterialPageRoute(
-            builder: (context)=>PhoneQuickLoginPage()
+            builder: (context)=>PhoneQuickLoginPage(title)
+        ));
+        break;
+      case 5:
+        Navigator.push(context, MaterialPageRoute(
+            builder: (context)=>GenQrCodePage(title)
+        ));
+        break;
+      case 6:
+        Navigator.push(context, MaterialPageRoute(
+            builder: (context)=>GetQrCodeStatusPage(title)
+        ));
+        break;
+      case 7:
+        Navigator.push(context, MaterialPageRoute(
+            builder: (context)=>ScanOptPage(title)
         ));
         break;
       case 8:
         Navigator.push(context, MaterialPageRoute(
-            builder: (context)=>RefreshTokenPage()
+          builder: (context)=>AuthLoginPage(title)
         ));
         break;
       case 9:
         Navigator.push(context, MaterialPageRoute(
-            builder: (context)=>QueryUserInfoPage()
+            builder: (context)=>RefreshTokenPage(title)
         ));
         break;
       case 10:
         Navigator.push(context, MaterialPageRoute(
-            builder: (context)=>UpdateUserInfoPage()
+            builder: (context)=>QueryUserInfoPage(title)
         ));
         break;
       case 11:
         Navigator.push(context, MaterialPageRoute(
-            builder: (context)=>BindStbPage()
+            builder: (context)=>UpdateUserInfoPage(title)
+        ));
+        break;
+      case 12:
+        Navigator.push(context, MaterialPageRoute(
+            builder: (context)=>BindStbPage(title)
         ));
         break;
     }

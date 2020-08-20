@@ -3,11 +3,18 @@ import 'package:flutterauthdemo/my_listener.dart';
 import 'package:wasuauthsdk/auth/wasu_urs_auth.dart';
 
 class QueryUserInfoPage extends StatefulWidget {
+  var _title;
   @override
-  _QueryUserInfoPageState createState() => _QueryUserInfoPageState();
+  _QueryUserInfoPageState createState() => _QueryUserInfoPageState(_title);
+
+  QueryUserInfoPage(this._title);
 }
 
 class _QueryUserInfoPageState extends State<QueryUserInfoPage> {
+  var _title;
+
+  _QueryUserInfoPageState(this._title);
+
   TextEditingController tokenController = TextEditingController();
   TextEditingController uidController = TextEditingController();
 
@@ -15,7 +22,7 @@ class _QueryUserInfoPageState extends State<QueryUserInfoPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("查询用户信息"),
+        title: Text(_title),
       ),
       body: Container(
         child: Column(

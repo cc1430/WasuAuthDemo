@@ -1,21 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:flutterauthdemo/dialog_result_listener.dart';
 import 'package:flutterauthdemo/my_listener.dart';
 import 'package:wasuauthsdk/auth/wasu_urs_auth.dart';
 
 class SmsCodeLoginPage extends StatefulWidget {
+  var _title;
+
+  SmsCodeLoginPage(this._title);
+
   @override
-  _SmsCodeLoginPageState createState() => _SmsCodeLoginPageState();
+  _SmsCodeLoginPageState createState() => _SmsCodeLoginPageState(_title);
 }
 
 class _SmsCodeLoginPageState extends State<SmsCodeLoginPage> {
+  var _title;
   TextEditingController phoneController = TextEditingController();
   TextEditingController verCodeController = TextEditingController();
+
+  _SmsCodeLoginPageState(this._title);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("手机验证码登录（含发送登录验证码）"),
+        title: Text(_title),
       ),
       body: Container(
         child: Column(
@@ -71,6 +79,6 @@ class _SmsCodeLoginPageState extends State<SmsCodeLoginPage> {
 
   void _login() {
     print("登录");
-    WasuUrsAuth.getInstance().callSMSCodeLogin(phoneController.text, verCodeController.text, resultListener: MyListener());
+    WasuUrsAuth.getInstance().callSMSCodeLogin(phoneController.text, verCodeController.text, resultListener: DialogResultListener(context));
   }
 }

@@ -1,7 +1,7 @@
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:wasuauthsdk/auth/result_listener.dart';
 
-class MyListener extends ResultListener {
+class MyListener implements ResultListener {
   @override
   void onError(String error) {
     print("请求错误：$error");

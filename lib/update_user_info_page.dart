@@ -5,11 +5,19 @@ import 'package:wasuauthsdk/auth/wasu_urs_auth.dart';
 import 'package:wasuauthsdk/bean/user_info.dart';
 
 class UpdateUserInfoPage extends StatefulWidget {
+  var _title;
+
+  UpdateUserInfoPage(this._title);
+
   @override
-  _UpdateUserInfoPageState createState() => _UpdateUserInfoPageState();
+  _UpdateUserInfoPageState createState() => _UpdateUserInfoPageState(_title);
 }
 
 class _UpdateUserInfoPageState extends State<UpdateUserInfoPage> {
+  var _title;
+
+  _UpdateUserInfoPageState(this._title);
+
   TextEditingController tokenController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
   TextEditingController nickNameController = TextEditingController();
@@ -22,7 +30,7 @@ class _UpdateUserInfoPageState extends State<UpdateUserInfoPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("修改用户信息"),
+        title: Text(_title),
       ),
       body: CustomScrollView(
         shrinkWrap: true,
@@ -50,6 +58,9 @@ class _UpdateUserInfoPageState extends State<UpdateUserInfoPage> {
                         onPressed: ()=>{
                           _sendSmsCode()
                         },
+                      ),
+                      SizedBox(
+                        width: 30,
                       ),
                       RaisedButton(
                         child: Text("修改"),
