@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:flutterauthdemo/auth_login_page.dart';
-import 'package:flutterauthdemo/bind_stb_page.dart';
-import 'package:flutterauthdemo/gen_qrcode_page.dart';
-import 'package:flutterauthdemo/get_qrcode_status.dart';
-import 'package:flutterauthdemo/init_page.dart';
-import 'package:flutterauthdemo/phone_quick_login_page.dart';
-import 'package:flutterauthdemo/psw_login_page.dart';
-import 'package:flutterauthdemo/query_user_info_page.dart';
-import 'package:flutterauthdemo/refresh_token_page.dart';
-import 'package:flutterauthdemo/register_page.dart';
-import 'package:flutterauthdemo/scan_opt_page.dart';
-import 'package:flutterauthdemo/smscode_login_page.dart';
-import 'package:flutterauthdemo/update_user_info_page.dart';
+import 'package:flutterauthdemo/oauth/auth_login_page.dart';
+import 'package:flutterauthdemo/oauth/bind_stb_page.dart';
+import 'package:flutterauthdemo/oauth/gen_qrcode_page.dart';
+import 'package:flutterauthdemo/oauth/get_qrcode_status.dart';
+import 'package:flutterauthdemo/oauth/init_page.dart';
+import 'package:flutterauthdemo/oauth/phone_quick_login_page.dart';
+import 'package:flutterauthdemo/oauth/psw_login_page.dart';
+import 'package:flutterauthdemo/oauth/query_user_info_page.dart';
+import 'package:flutterauthdemo/oauth/refresh_token_page.dart';
+import 'package:flutterauthdemo/oauth/register_page.dart';
+import 'package:flutterauthdemo/oauth/scan_opt_page.dart';
+import 'package:flutterauthdemo/oauth/smscode_login_page.dart';
+import 'package:flutterauthdemo/oauth/update_user_info_page.dart';
+import 'package:flutterauthdemo/video/video_player_page.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -36,6 +37,7 @@ class HomePageState extends State {
     "查询用户信息",
     "修改用户信息",
     "手机绑定机顶盒",
+//    "视频播放器",
   ];
 
   Widget buildListData(BuildContext context, String titleItem) {
@@ -141,6 +143,11 @@ class HomePageState extends State {
       case 12:
         Navigator.push(context, MaterialPageRoute(
             builder: (context)=>BindStbPage(title)
+        ));
+        break;
+      case 13:
+        Navigator.push(context, MaterialPageRoute(
+            builder: (context)=>VideoPlayerPage(title)
         ));
         break;
     }

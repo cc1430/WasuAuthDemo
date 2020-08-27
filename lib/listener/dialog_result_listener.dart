@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutterauthdemo/my_listener.dart';
+import 'package:flutterauthdemo/listener/my_listener.dart';
 
 class DialogResultListener extends MyListener{
 

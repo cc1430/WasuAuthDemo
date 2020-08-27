@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutterauthdemo/dialog_result_listener.dart';
+import 'package:flutterauthdemo/listener/dialog_result_listener.dart';
 import 'package:wasuauthsdk/auth/wasu_urs_auth.dart';
 
+
+///手机号快捷登录
 class PhoneQuickLoginPage extends StatefulWidget {
   var _title;
 

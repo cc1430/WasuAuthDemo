@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutterauthdemo/my_listener.dart';
+import 'package:flutterauthdemo/listener/my_listener.dart';
 import 'package:wasuauthsdk/auth/wasu_urs_auth.dart';
 import 'package:wasuauthsdk/bean/user_info.dart';
 
+
+///注册
 class RegisterPage extends StatefulWidget {
   var _title;
   @override
@@ -93,8 +95,6 @@ class RegisterState extends State {
     );
   }
 
-  MyListener myListener = MyListener();
-
   void _commit() {
     print("提交注册");
     UserInfo userInfo = UserInfo();
@@ -102,12 +102,12 @@ class RegisterState extends State {
     userInfo.phone = phoneController.text;
     userInfo.password = passwordController.text;
     userInfo.verCode = verCodeController.text;
-    WasuUrsAuth.getInstance().register(userInfo, resultListener: myListener);
+    WasuUrsAuth.getInstance().register(userInfo, resultListener: MyListener());
   }
 
   void _sendSmsCode() {
     print("发送验证码");
-    WasuUrsAuth.getInstance().sendSMSCode(phoneController.text, resultListener: myListener);
+    WasuUrsAuth.getInstance().sendSMSCode(phoneController.text, resultListener: MyListener());
   }
 
 }

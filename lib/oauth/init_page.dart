@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:wasuauthsdk/auth/wasu_urs_auth.dart';
 
+
+///初始化
 class InitPage extends StatefulWidget {
   var _title;
 

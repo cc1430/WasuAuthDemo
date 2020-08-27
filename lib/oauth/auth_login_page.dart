@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:flutterauthdemo/dialog_result_listener.dart';
+import 'package:flutterauthdemo/listener/dialog_result_listener.dart';
 import 'package:wasuauthsdk/auth/wasu_urs_auth.dart';
 
-class GetQrCodeStatusPage extends StatefulWidget {
+
+///手机授权登录
+class AuthLoginPage extends StatefulWidget {
   var _title;
 
-  GetQrCodeStatusPage(this._title);
+  AuthLoginPage(this._title);
 
   @override
-  _GetQrCodeStatusPageState createState() => _GetQrCodeStatusPageState(_title);
+  _AuthLoginPageState createState() => _AuthLoginPageState(_title);
 }
 
 TextField _getTextField(String label, TextEditingController controller) {
@@ -20,11 +22,12 @@ TextField _getTextField(String label, TextEditingController controller) {
   );
 }
 
-class _GetQrCodeStatusPageState extends State<GetQrCodeStatusPage> {
+class _AuthLoginPageState extends State<AuthLoginPage> {
   var _title;
-  var qrCodeIdController = TextEditingController();
+  var _qrCodeIdController = TextEditingController();
+  var _tokenController = TextEditingController();
 
-  _GetQrCodeStatusPageState(this._title);
+  _AuthLoginPageState(this._title);
 
   @override
   Widget build(BuildContext context) {
@@ -35,13 +38,14 @@ class _GetQrCodeStatusPageState extends State<GetQrCodeStatusPage> {
       body: Container(
         child: Column(
           children: <Widget>[
-            _getTextField("二维码编号：", qrCodeIdController),
+            _getTextField("二维码编号：", _qrCodeIdController),
+            _getTextField("AccessToken：", _tokenController),
             SizedBox(
               height: 30,
             ),
             RaisedButton(
               onPressed: ()=>{
-                _query()
+                _commit()
               },
               child: Text("提交"),
             )
@@ -51,7 +55,7 @@ class _GetQrCodeStatusPageState extends State<GetQrCodeStatusPage> {
     );
   }
 
-  void _query() {
-    WasuUrsAuth.getInstance().checkQrcodeStatus(qrCodeIdController.text, resultListener: DialogResultListener(context));
+  void _commit() {
+    WasuUrsAuth.getInstance().callAuthLogin(_qrCodeIdController.text, _tokenController.text, resultListener: DialogResultListener(context));
   }
 }

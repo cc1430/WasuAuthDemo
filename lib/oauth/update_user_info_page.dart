@@ -1,9 +1,11 @@
 
 import 'package:flutter/material.dart';
-import 'package:flutterauthdemo/my_listener.dart';
+import 'package:flutterauthdemo/listener/my_listener.dart';
 import 'package:wasuauthsdk/auth/wasu_urs_auth.dart';
 import 'package:wasuauthsdk/bean/user_info.dart';
 
+
+///修改用户信息
 class UpdateUserInfoPage extends StatefulWidget {
   var _title;
 

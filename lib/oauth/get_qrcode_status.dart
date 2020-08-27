@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:flutterauthdemo/dialog_result_listener.dart';
+import 'package:flutterauthdemo/listener/dialog_result_listener.dart';
 import 'package:wasuauthsdk/auth/wasu_urs_auth.dart';
 
-class AuthLoginPage extends StatefulWidget {
+
+///查询二维码状态
+class GetQrCodeStatusPage extends StatefulWidget {
   var _title;
 
-  AuthLoginPage(this._title);
+  GetQrCodeStatusPage(this._title);
 
   @override
-  _AuthLoginPageState createState() => _AuthLoginPageState(_title);
+  _GetQrCodeStatusPageState createState() => _GetQrCodeStatusPageState(_title);
 }
 
 TextField _getTextField(String label, TextEditingController controller) {
@@ -20,12 +22,11 @@ TextField _getTextField(String label, TextEditingController controller) {
   );
 }
 
-class _AuthLoginPageState extends State<AuthLoginPage> {
+class _GetQrCodeStatusPageState extends State<GetQrCodeStatusPage> {
   var _title;
-  var _qrCodeIdController = TextEditingController();
-  var _tokenController = TextEditingController();
+  var qrCodeIdController = TextEditingController();
 
-  _AuthLoginPageState(this._title);
+  _GetQrCodeStatusPageState(this._title);
 
   @override
   Widget build(BuildContext context) {
@@ -36,14 +37,13 @@ class _AuthLoginPageState extends State<AuthLoginPage> {
       body: Container(
         child: Column(
           children: <Widget>[
-            _getTextField("二维码编号：", _qrCodeIdController),
-            _getTextField("AccessToken：", _tokenController),
+            _getTextField("二维码编号：", qrCodeIdController),
             SizedBox(
               height: 30,
             ),
             RaisedButton(
               onPressed: ()=>{
-                _commit()
+                _query()
               },
               child: Text("提交"),
             )
@@ -53,7 +53,7 @@ class _AuthLoginPageState extends State<AuthLoginPage> {
     );
   }
 
-  void _commit() {
-    WasuUrsAuth.getInstance().callAuthLogin(_qrCodeIdController.text, _tokenController.text, resultListener: DialogResultListener(context));
+  void _query() {
+    WasuUrsAuth.getInstance().checkQrcodeStatus(qrCodeIdController.text, resultListener: DialogResultListener(context));
   }
 }
