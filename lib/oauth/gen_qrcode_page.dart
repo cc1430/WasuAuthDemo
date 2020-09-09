@@ -124,8 +124,12 @@ class MyDialogListener extends DialogResultListener{
   void onSuccess(String data) {
     super.onSuccess(data);
     Map map = JsonDecoder().convert(data);
-    String url = map["returnedObject"]["imgUrl"];
-    _function(url);
+    try {
+      String url = map["returnedObject"]["imgUrl"];
+      _function(url);
+    } catch (e) {
+      print(e);
+    }
   }
 }
 

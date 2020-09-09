@@ -20,7 +20,7 @@ dependencies:
   flutter:
     sdk: flutter
 
-  wasuauthsdk: ^0.0.6
+  wasuauthsdk: ^0.0.8
   fluttertoast: ^3.1.3
   transparent_image: ^1.0.0
   video_player: ^0.10.0

@@ -53,7 +53,7 @@ class InitPageSate extends State {
               TextField(
                 decoration: InputDecoration(
                   labelText: "Client Id:",
-                  hintText: "c1"
+                  hintText: "c2"
                 ),
                 controller: idController,
               ),

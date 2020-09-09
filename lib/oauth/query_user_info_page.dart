@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutterauthdemo/listener/my_listener.dart';
+import 'package:flutterauthdemo/listener/dialog_result_listener.dart';
 import 'package:wasuauthsdk/auth/wasu_urs_auth.dart';
 
 
@@ -61,6 +61,6 @@ class _QueryUserInfoPageState extends State<QueryUserInfoPage> {
 
   void _query(){
     print("查询");
-    WasuUrsAuth.getInstance().getUserByUid(tokenController.text, uidController.text, resultListener: MyListener());
+    WasuUrsAuth.getInstance().getUserByUid(tokenController.text, uidController.text, resultListener: DialogResultListener(context));
   }
 }

@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutterauthdemo/listener/dialog_result_listener.dart';
 import 'package:flutterauthdemo/listener/my_listener.dart';
 import 'package:wasuauthsdk/auth/wasu_urs_auth.dart';
 import 'package:wasuauthsdk/bean/user_info.dart';
@@ -104,6 +105,6 @@ class _UpdateUserInfoPageState extends State<UpdateUserInfoPage> {
     userInfo.oldPassword = oldPswController.text;
     userInfo.verCode = verCodeController.text;
     userInfo.phone = phoneController.text;
-    WasuUrsAuth.getInstance().updateUser(tokenController.text, userInfo, resultListener: MyListener());
+    WasuUrsAuth.getInstance().updateUser(tokenController.text, userInfo, resultListener: DialogResultListener(context));
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutterauthdemo/listener/dialog_result_listener.dart';
 import 'package:flutterauthdemo/listener/my_listener.dart';
 import 'package:wasuauthsdk/auth/wasu_urs_auth.dart';
 import 'package:wasuauthsdk/bean/user_info.dart';
@@ -102,7 +103,7 @@ class RegisterState extends State {
     userInfo.phone = phoneController.text;
     userInfo.password = passwordController.text;
     userInfo.verCode = verCodeController.text;
-    WasuUrsAuth.getInstance().register(userInfo, resultListener: MyListener());
+    WasuUrsAuth.getInstance().register(userInfo, resultListener: DialogResultListener(context));
   }
 
   void _sendSmsCode() {

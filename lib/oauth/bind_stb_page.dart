@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutterauthdemo/listener/my_listener.dart';
+import 'package:flutterauthdemo/listener/dialog_result_listener.dart';
 import 'package:wasuauthsdk/auth/wasu_urs_auth.dart';
 
 
@@ -22,6 +22,8 @@ class _BindStbPageState extends State<BindStbPage> {
   TextEditingController stbIdController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
   TextEditingController optController = TextEditingController();
+  TextEditingController clientIdController = TextEditingController();
+  TextEditingController clientSecretController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -29,34 +31,56 @@ class _BindStbPageState extends State<BindStbPage> {
         appBar: AppBar(
           title: Text(_title),
         ),
-        body: Column(
-          children: <Widget>[
-            _getTextField("Token：", tokenController),
-            _getTextField("机顶盒号：", stbIdController),
-            _getTextField("手机号：", phoneController),
-            _getTextField("操作类型：", optController),
-            RaisedButton(
-              child: Text("确认"),
-              onPressed: (){
-                _opt();
-              },
+        body: CustomScrollView(
+          shrinkWrap: true,
+          slivers: <Widget>[
+            new SliverPadding(
+              padding: EdgeInsets.all(5),
+              sliver: SliverList(
+                delegate: SliverChildListDelegate(
+                    <Widget>[
+                      _getTextField("机顶盒号：", stbIdController),
+                      _getTextField("手机号：", phoneController),
+                      _getTextField("操作类型：", optController),
+                      _getTextField("Token：", tokenController, hint: "选填"),
+                      _getTextField("ClientId：", clientIdController, hint: "选填"),
+                      _getTextField("ClientSecret：", clientSecretController, hint: "选填"),
+                      SizedBox(
+                        height: 30,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          RaisedButton(
+                            child: Text("确认"),
+                            onPressed: (){
+                              _opt();
+                            },
+                          )
+                        ],
+                      )
+                    ]
+                ),
+              ),
             )
           ],
         )
     );
   }
 
-  TextField _getTextField(String label, TextEditingController controller) {
+  TextField _getTextField(String label, TextEditingController controller, {String hint}) {
     return TextField(
       decoration: InputDecoration(
-          labelText: label
+        labelText: label,
+        hintText: hint,
       ),
       controller: controller,
     );
   }
 
   void _opt() {
-    WasuUrsAuth.getInstance().bindStbId(tokenController.text, stbIdController.text, phoneController.text,
-        optController.text, resultListener: MyListener());
+    WasuUrsAuth.getInstance().bindStbId(stbIdController.text, phoneController.text,
+        optController.text, resultListener: DialogResultListener(context), token: tokenController?.text,
+        clientId: clientIdController?.text, clientSecret: clientSecretController?.text);
   }
 }

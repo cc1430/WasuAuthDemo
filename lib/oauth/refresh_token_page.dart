@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutterauthdemo/listener/my_listener.dart';
+import 'package:flutterauthdemo/listener/dialog_result_listener.dart';
 import 'package:wasuauthsdk/auth/wasu_urs_auth.dart';
 
 
@@ -51,6 +51,6 @@ class _RefreshTokenPageState extends State<RefreshTokenPage> {
 
   void _refreshToken(){
     print("刷新Token");
-    WasuUrsAuth.getInstance().refreshToken(refreshTokenController.text, resultListener: MyListener());
+    WasuUrsAuth.getInstance().refreshToken(refreshTokenController.text, resultListener: DialogResultListener(context));
   }
 }
